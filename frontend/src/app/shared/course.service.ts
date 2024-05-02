@@ -24,9 +24,9 @@ export class CourseService {
     return this.http.get<Array<CourseModel>>("https://localhost:7093/Course", this.httpOptions)
   }
 
-  GetByName(name: string)
+  GetById(id: number)
   { 
-    return this.http.get<CourseModel>("https://localhost:7093/Course/ByName?name=" + name, this.httpOptions);
+    return this.http.get<CourseModel>("https://localhost:7093/Course/ById?Id=" + id, this.httpOptions);
   }
 
   Post(course: CourseModel)
@@ -35,7 +35,7 @@ export class CourseService {
   }
 
   updateCourse(course: any) {
-    return this.http.put(`https://localhost:7093/Course/${course.name}`, course, this.httpOptions);
+    return this.http.put(`https://localhost:7093/Course/${course.id}`, course, this.httpOptions);
   }
   
 }

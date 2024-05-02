@@ -8,10 +8,10 @@
             </div>
             <div class="form-group">
               <label for="exampleFormControlSelect1">Level</label>
-              <select formControlName="level" class="form-control" id="exampleFormControlSelect1">
-                <option>Advanced</option>
-                <option>Beginner</option>
+              <select formControlName="levelName" class="form-control" id="exampleFormControlSelect1">
                 <option>Rookie</option>
+                <option>Débutant</option>
+                <option>Confirmé</option>
               </select>
             </div>
             <div class="form-group">
@@ -23,7 +23,9 @@
             </div>
             <div class="form-group">
               <label for="exampleFormControlTextarea1">Teacher</label>
-              <textarea formControlName="teacher" class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+              <select formControlName="username" class="form-control" id="exampleFormControlTextarea1">
+                <option *ngFor="let user of users" [value]="user.id">{{user.username}}</option>
+              </select>
             </div>
             <div class="form-group">
               <label for="exampleFormControlTextarea2">Description</label>

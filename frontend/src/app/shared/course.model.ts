@@ -1,8 +1,9 @@
 export class CourseModel{
 
+    id: number;
     name: string;
-    level: string;
+    levelName: string;
     schedule: string;
-    teacher: string;
+    username: string;
     description: string;
 }

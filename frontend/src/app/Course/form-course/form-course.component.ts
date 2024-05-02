@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CourseModel } from '../../shared/course.model';
 import { CourseService } from '../../shared/course.service';
+import { UserModel } from '../../shared/user.model';
+import { UserService } from '../../shared/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -9,79 +11,63 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './form-course.component.html',
   styleUrls: ['./form-course.component.css']
 })
-export class FormCourseComponent {
+export class FormCourseComponent implements OnInit {
 model: CourseModel;
 formCourse: FormGroup;
-successMessage: string | null = null;
+successMessage: string | null = null
+currentCourseId?: number;  // Stocker l'ID du cours ici
 
-constructor(private courseService:CourseService, private route: ActivatedRoute){
+users: UserModel[] = [];
+
+constructor(private courseService:CourseService, private userService:UserService, private route: ActivatedRoute, private router: Router){
 
   this.formCourse = new FormGroup({
     name: new FormControl('', Validators.required),
-    level: new FormControl('', Validators.required),
+    levelName: new FormControl('', Validators.required),
     schedule: new FormControl('', Validators.required),
-    teacher: new FormControl('', Validators.required),
+    username: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required)
   });
-
-  this.route.params.subscribe(params=>{
-    let name = params['name']
-
-    if(name){
-      this.courseService.GetByName(name).subscribe(course=>{
-
-        if (course){
-
-          this.formCourse.controls['name'].setValue(course.name);
-          this.formCourse.controls['level'].setValue(course.level);
-          this.formCourse.controls['schedule'].setValue(course.schedule);
-          this.formCourse.controls['teacher'].setValue(course.teacher);
-          this.formCourse.controls['description'].setValue(course.description);
-        }
-      })
-    }
-  })
 }
 
-save(form: FormGroup) {
+    ngOnInit() {
+      this.loadUsers();
+      this.route.params.subscribe(params => {
+        const id = +params['id'];
+        if(id) {
+          this.currentCourseId = id;  // Sauvegarde de l'ID
+          this.courseService.GetById(id).subscribe(course => {
+            this.formCourse.patchValue(course);
+          }, error => {
+            console.error("Error fetching course:", error);
+          });
+        }
+      });
+    }
 
-  let model = form.value;
-    model.name= form.value.name;
-    model.level= form.value.level;
-    model.schedule= form.value.schedule;
-    model.teacher= form.value.teacher;
-    model.description= form.value.description;
+    loadUsers() {
+      this.userService.GetUsers().subscribe(data => {
+        this.users = data;
+      }, error => {
+        console.error('Failed to load users', error);
+      });
+    }
 
-    this.courseService.GetByName(model.name).subscribe(existingCourse => {
-      if (existingCourse) {
-        // Si le cours existe déjà, mettre à jour avec HTTP PUT
-        this.courseService.updateCourse(model).subscribe(
-          () => {
-            this.successMessage = "Course updated successfully.";
-            setTimeout(() => {
-              this.successMessage = null; // Effacer le message après 2 secondes
-              window.location.href = '/table-course'; // Rediriger vers la page de la table des cours
-            }, 2000);
-            //window.location.href = '/table-course';
-          },
-          error => {
-            console.error("Error updating course:", error);
-          }
-        );
+    save(form: FormGroup) {
+      let model = form.value as CourseModel;
+    
+      if (this.currentCourseId) {
+        this.courseService.updateCourse(model).subscribe(success => {
+          // Logique de succès
+        }, error => {
+          console.error("Error updating course:", error);
+        });
       } else {
-        // Si le cours n'existe pas encore, ajouter avec HTTP POST
-        this.courseService.Post(model).subscribe(
-          () => {
-            this.successMessage = "Course Added successfully.";
-            setTimeout(() => {
-              this.successMessage = null; // Effacer le message après 2 secondes
-              window.location.href = '/form-course'; // Renouveller le formulaire pour un autre ajout
-            }, 2000);
-          },
-          error => {
-            console.error("Error adding course:", error);
-          }
-        );
+        this.courseService.Post(model).subscribe(success => {
+          // Logique de succès
+        }, error => {
+          console.error("Error adding course:", error);
+        });
       }
-    });
-  }}
+    }
+  }

@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './table-course.component.html',
   styleUrls: ['./table-course.component.css']
 })
-export class TableCourseComponent {
+export class TableCourseComponent  {
 
   courses: any;
 
@@ -18,7 +18,12 @@ export class TableCourseComponent {
       this.courses = x
     })  
   }
-  edit(name:string){
-    this.router.navigate(['form-course', name])
+
+  edit(id: number) {
+    if (id) {
+      this.router.navigate(['form-course', id]);
+    } else {
+      console.error('Undefined course ID');
+    }
   }
 }
