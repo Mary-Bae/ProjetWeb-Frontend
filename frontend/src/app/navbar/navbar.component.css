@@ -1,0 +1,16 @@
+.navbar-brand, .nav-link, .nav-link.active, .dropdown-item{
+    
+    color: rgb(32, 41, 218);
+    }
+
+.dropdown-menu{
+    background-color: #6aca8a;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #a10909;
+  }
+  .container-fluid{
+    margin-left: 2%;
+    margin-right: 5%
+  }

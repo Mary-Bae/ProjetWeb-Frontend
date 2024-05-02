@@ -1,0 +1,31 @@
+.form-group{
+    display: inline-block;
+    margin: 5%;
+    width: 80%;
+}
+
+label{
+    display: inline-block;
+    margin-left: 40%;
+    margin-right: 50%;
+    margin-top: 5%;
+    font-weight: bold;
+    font-size: larger;
+    color: rgb(117, 114, 114);
+
+}
+
+form{
+    margin-top : 100px;
+    border: 2px solid rgb(216, 213, 213);
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    background-color: rgb(247, 247, 247);
+}
+
+.btn.btn-primary, .btn.btn-success{
+    margin-left: 15%;
+    width: 25%;
+    margin-bottom: 5%;
+
+}
