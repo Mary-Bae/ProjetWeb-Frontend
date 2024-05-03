@@ -46,9 +46,7 @@ constructor(private courseService:CourseService, private userService:UserService
                   });
                 }
               });
-            } else {
-              console.error('Course ID is undefined');
-            }
+            } 
           });
         }
 
@@ -63,19 +61,19 @@ constructor(private courseService:CourseService, private userService:UserService
     save(form: FormGroup) {
       let model = form.value as CourseModel;
       model.id = this.currentCourseId;
-      console.log(model.id)
       if (this.currentCourseId) {
         this.courseService.updateCourse(model).subscribe(
           () => {
             console.log("Course updated successfully.");
-            // Redirection
+            this.router.navigate(['/table-course']);
           }
         );
       } else {
         this.courseService.Post(model).subscribe(
           () => {
-            console.log("Course added successfully.");
-            // Redirection
+            this.formCourse.reset();
+            this.successMessage = "Cours rajouté avec succès"
+            setTimeout(() => this.successMessage = null, 2000);
           }
         );
       }
