@@ -5,5 +5,6 @@ export class CourseModel{
     levelName: string;
     schedule: string;
     username: string;
+    userId: number;
     description: string;
 }
