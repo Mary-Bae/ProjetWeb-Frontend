@@ -1,6 +1,8 @@
 <div class="table-container">
-    <table class="table table-striped">
-        <thead>
+    <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+    <table class="table table-hover table-bordered caption-top">
+        <caption>List of Courses</caption>
+        <thead class="table-dark">
             <tr>
                 <th scope="col">Name</th>
                 <th scope="col">Level</th>
@@ -8,6 +10,7 @@
                 <th scope="col">Teacher</th>
                 <th scope="col">Description</th>
                 <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -17,7 +20,8 @@
                 <td>{{ course.schedule }}</td>
                 <td>{{ course.username }}</td>
                 <td>{{ course.description }}</td>
-                <td><button (click)="edit(course.id)">Edit</button></td>
+                <td><button type="button" class="btn btn-outline-warning"(click)="edit(course.id)">Edit</button></td>
+                <td><button type="button" class="btn btn-outline-danger" (click)="del(course.id)">Delete</button></td>       
             </tr>
         </tbody>
     </table>
