@@ -23,7 +23,7 @@
             </div>
             <div class="form-group">
               <label for="exampleFormControlTextarea1">Teacher</label>
-              <select formControlName="username" class="form-control" id="exampleFormControlTextarea1">
+              <select formControlName="userId" class="form-control" id="exampleFormControlTextarea1">
                 <option *ngFor="let user of users" [value]="user.id">{{user.username}}</option>
               </select>
             </div>
