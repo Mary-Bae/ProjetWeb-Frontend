@@ -13,11 +13,10 @@ loginForm:FormGroup;
 
 constructor(private authService: AuthentificationService, private router: Router){
   this.loginForm= new FormGroup({
-    username: new FormControl("", [Validators.required, 
-      //Validators.minLength(4)
+    username: new FormControl("", [Validators.required, Validators.minLength(4)
     ]),
     password: new FormControl("", [Validators.required,
-    //Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$")
+      Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{9,}$")
     ]),
   })
 }
