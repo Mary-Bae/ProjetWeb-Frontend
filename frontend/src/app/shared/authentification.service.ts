@@ -14,6 +14,10 @@ export class AuthentificationService {
     return this.http.post(`https://localhost:7093/Authentication/Login?login=${username}&password=${password}`, null);
   }
 
+  Register(username: string, password: string): Observable<any> {
+    return this.http.post(`https://localhost:7093/Authentication/Register?login=${username}&password=${password}`, null);
+  }
+
   isAuthenticated(): boolean{
       //Utilisation de localstorage plutot que sessionstorage pour éviter une déconnection à chaque fois qu'on change de page
     const token = localStorage.getItem('jwt'); 

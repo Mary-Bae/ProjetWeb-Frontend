@@ -32,6 +32,16 @@ login(){
       //sessionStorage.setItem("jwt", token);
       this.router.navigate(["/"]);
     }
-})
+  })
 }
+
+register() {
+    this.authService.Register(this.loginForm.value.username, this.loginForm.value.password)
+    .subscribe(response => {
+      console.log(response);
+      this.router.navigate(["/"]);
+    });
 }
+
+}
+

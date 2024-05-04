@@ -36,7 +36,7 @@
             </div>
             <div class="buttonEmplacement">
                 <button [disabled]="loginForm.invalid" type="submit" class="btn btn-success">Login</button>
-                <button type="button" class="btn btn-primary">Register</button>
+                <button [disabled]="loginForm.invalid" type="button" class="btn btn-primary"(click)="register()">Register</button>
             </div>
           </form>
     </div>
