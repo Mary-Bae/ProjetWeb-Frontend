@@ -37,5 +37,10 @@ export class CourseService {
   updateCourse(course: any) {
     return this.http.put(`https://localhost:7093/Course/${course.id}`, course, this.httpOptions);
   }
+
+  Del(id: number)
+  { 
+    return this.http.delete<CourseModel>(`https://localhost:7093/Course/${id}`, this.httpOptions);
+  }
   
 }
