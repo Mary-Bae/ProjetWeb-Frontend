@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 })
 export class TableCourseComponent  {
 
-
   courses: any;
   successMessage: string | null = null
 
@@ -25,7 +24,6 @@ export class TableCourseComponent  {
       this.courses = x;
     })
   }
-
 
   edit(id: number) {
     if (id) {

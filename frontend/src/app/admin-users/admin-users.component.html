@@ -1,1 +1,54 @@
-<p>admin-users works!</p>
+<div class="row">
+    
+    <div class="col">
+
+        <div class="table-container">
+            <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+            <table class="table table-hover table-bordered caption-top">
+                <caption>Liste des utilisateurs</caption>
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users">
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.roleName }}</td>
+                        <td><button type="button" class="btn btn-outline-warning"(click)="edit(user.id)">Edit</button></td>
+                        <td><button type="button" class="btn btn-outline-danger" (click)="del(user.id)">Delete</button></td>       
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="col">
+
+        <div class="table-container">
+            <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+            <table class="table table-hover table-bordered caption-top">
+                <caption>Liste des étudiants</caption>
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users">
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.roleName }}</td>
+                        <td><button type="button" class="btn btn-outline-warning"(click)="edit(user.id)">Edit</button></td>      
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+       
+</div>
+

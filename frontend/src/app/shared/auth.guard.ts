@@ -8,6 +8,11 @@ export const authGuard: CanActivateFn = (route) => {
   const router = inject(Router);
   const requiredRoles = route.data['roles'] as string[];
 
+  if(!authService.isAuthenticated()){
+    return router.createUrlTree(['/login']);
+  }
+
+
   if (requiredRoles) {
     const userRole = authService.getRole();
     console.log("UserRole:", userRole);
@@ -19,4 +24,3 @@ export const authGuard: CanActivateFn = (route) => {
   // Si toutes les vérifications passent, permettre l'accès à la route
   return true;
 };
-

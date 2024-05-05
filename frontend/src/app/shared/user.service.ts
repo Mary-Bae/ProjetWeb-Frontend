@@ -13,13 +13,18 @@ export class UserService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.token}`
     })
-  };
+  }
 
   constructor(private http: HttpClient) { }
 
   GetUsers()
   {
     return this.http.get<Array<UserModel>>("https://localhost:7093/User", this.httpOptions)
+  }
+
+  Del(id: number)
+  { 
+    return this.http.delete<UserModel>(`https://localhost:7093/User/${id}`, this.httpOptions);
   }
 
 }
