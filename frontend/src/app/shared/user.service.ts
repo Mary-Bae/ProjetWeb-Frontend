@@ -22,6 +22,11 @@ export class UserService {
     return this.http.get<Array<UserModel>>("https://localhost:7093/User", this.httpOptions)
   }
 
+  GetStudents()
+  {
+    return this.http.get<Array<UserModel>>("https://localhost:7093/User/grades", this.httpOptions)
+  }
+
   Del(id: number)
   { 
     return this.http.delete<UserModel>(`https://localhost:7093/User/${id}`, this.httpOptions);

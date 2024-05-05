@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { UserService } from '../shared/user.service';
-import { UserModel } from '../shared/user.model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,17 +10,25 @@ import { Router } from '@angular/router';
 export class AdminUsersComponent {
 
   users: any;
+  students: any
   successMessage: string | null = null
 
   constructor(private userService: UserService, private router:Router){
 
     this.loadUsers();
+    this.loadStudents();
  
   }
 
   loadUsers() {
     this.userService.GetUsers().subscribe(x => {
       this.users = x;
+    })
+  }
+
+  loadStudents() {
+    this.userService.GetStudents().subscribe(x => {
+    this.students = x;
     })
   }
 
