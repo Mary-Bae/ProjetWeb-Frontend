@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { JwtInterceptor, JwtModule } from '@auth0/angular-jwt';
 import { HomeComponent } from './home/home.component';
 import { UnauthorizedPageComponent } from './unauthorized-page/unauthorized-page.component';
+import { AdminUsersComponent } from './admin-users/admin-users.component';
 
 export function tokenGetter(){
   return sessionStorage.getItem("jwt");
@@ -27,6 +28,7 @@ export function tokenGetter(){
     LoginComponent,
     HomeComponent,
     UnauthorizedPageComponent,
+    AdminUsersComponent,
   ],
   imports: [
     BrowserModule,
