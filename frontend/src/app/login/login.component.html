@@ -13,7 +13,7 @@
                 </small>
                 <small class="text-danger"
                     *ngIf="loginForm.get('username').hasError('minlength')">
-                    Please enter an username with 4 characters minimum
+                    Votre login doit avoir au moins 4 caractères
                 </small>
         </div>
 
@@ -25,20 +25,20 @@
         (loginForm.get('password').dirty || loginForm.get('password').touched)">
     <small class="text-danger"
         *ngIf="loginForm.get('password').hasError('required')">
-        This field is required.
+        Ce champ est requis.
     </small>
     <small class="text-danger"
         *ngIf="loginForm.get('password').hasError('pattern')">
-        Please enter a valid password
+        Rentrez un mot de passe valide.
     </small>
- 
 </div>
-            </div>
+    </div>
             <div class="buttonEmplacement">
                 <button [disabled]="loginForm.invalid" type="submit" class="btn btn-success">Login</button>
                 <button [disabled]="loginForm.invalid" type="button" class="btn btn-primary"(click)="register()">Register</button>
             </div>
           </form>
+          <div *ngIf="loginError" class="text-danger">{{ loginError }}</div>
     </div>
     <div class="col"></div>
 </div>

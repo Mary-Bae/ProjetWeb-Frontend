@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 loginForm:FormGroup;
+loginError: string = '';
 
 constructor(private authService: AuthentificationService, private router: Router){
   this.loginForm= new FormGroup({
@@ -27,10 +28,13 @@ login(){
     console.log(response);
     if(response.token){
       const token = response.token;
-      localStorage.setItem("jwt", token);
-      //sessionStorage.setItem("jwt", token);
+      this.authService.saveToken(token);
+      //localStorage.setItem("jwt", token); => Suppression de la methode car incluse dans la methode savetoken en plus de la verification du role
       this.router.navigate(["/"]);
     }
+  }, error => { // => Le rajout de ceci permet à l'application de ne pas cracher si le login n'est pas bon
+    console.error(error);
+    this.loginError = 'Login ou mot de passe incorrect';
   })
 }
 

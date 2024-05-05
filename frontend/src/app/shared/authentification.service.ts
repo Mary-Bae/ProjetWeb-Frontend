@@ -29,4 +29,20 @@ export class AuthentificationService {
     const token = localStorage.getItem('jwt');
     return this.http.get("https://localhost:7093/Authentication/Refreshtoken?token="+token);
   }
+
+  saveToken(token: string): void {
+    localStorage.setItem('jwt', token);
+    this.decodeAndStoreRole(token);
+  }
+
+  decodeAndStoreRole(token: string): void {
+    const decodedToken = this.jwtHelper.decodeToken(token);
+    const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+    localStorage.setItem('role', role);
+  }
+
+  getRole(): string {
+    return localStorage.getItem('role');
+  }
+
 }

@@ -5,15 +5,17 @@ import { TableCourseComponent } from './Course/table-course/table-course.compone
 import { LoginComponent } from './login/login.component';
 import { authGuard } from './shared/auth.guard';
 import { HomeComponent } from './home/home.component';
+import { UnauthorizedPageComponent } from './unauthorized-page/unauthorized-page.component';
 
 
 
 const routes: Routes = [
-  {path:"form-course", component:FormCourseComponent},
-  {path:"form-course/:id", component:FormCourseComponent},
-  {path:"table-course", component:TableCourseComponent, canActivate:[authGuard]},
+  { path: '', component:HomeComponent },
+  {path:"form-course", component:FormCourseComponent, canActivate:[authGuard], data: { roles: ['admin', 'instructor'] }},
+  {path:"form-course/:id", component:FormCourseComponent, canActivate:[authGuard], data: { roles: ['admin', 'instructor'] }},
+  {path:"table-course", component:TableCourseComponent, canActivate:[authGuard], data: { roles: ['admin', 'instructor'] }},
   {path:"login", component:LoginComponent},
-  { path: '', component:HomeComponent }
+  {path:"unauthorized-page", component:UnauthorizedPageComponent}
 ];
 
 @NgModule({

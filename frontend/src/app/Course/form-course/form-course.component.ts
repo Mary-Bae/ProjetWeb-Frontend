@@ -15,7 +15,8 @@ export class FormCourseComponent implements OnInit {
 model: CourseModel;
 formCourse: FormGroup;
 successMessage: string | null = null
-currentCourseId?: number;  // Stocker l'ID du cours ici
+currentCourseId?: number;
+userRole: string;
 
 users: UserModel[] = [];
 

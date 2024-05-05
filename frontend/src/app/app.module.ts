@@ -12,6 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { JwtInterceptor, JwtModule } from '@auth0/angular-jwt';
 import { HomeComponent } from './home/home.component';
+import { UnauthorizedPageComponent } from './unauthorized-page/unauthorized-page.component';
 
 export function tokenGetter(){
   return sessionStorage.getItem("jwt");
@@ -25,6 +26,7 @@ export function tokenGetter(){
     TableCourseComponent,
     LoginComponent,
     HomeComponent,
+    UnauthorizedPageComponent,
   ],
   imports: [
     BrowserModule,
