@@ -14,7 +14,7 @@ export class CourseService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.token}`
     })
-  };
+  }
 
   constructor(private http: HttpClient) { 
   }

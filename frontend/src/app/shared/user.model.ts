@@ -5,5 +5,6 @@ export class UserModel{
     password: string;
     salt: string;
     roleId: number;
+    roleName: string;
 
 }
