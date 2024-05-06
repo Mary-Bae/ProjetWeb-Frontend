@@ -16,7 +16,7 @@ model: CourseModel;
 formCourse: FormGroup;
 successMessage: string | null = null
 currentCourseId?: number;
-userRole: string;
+userRole: string = 'instructor';
 
 users: UserModel[] = [];
 
@@ -52,10 +52,10 @@ constructor(private courseService:CourseService, private userService:UserService
         }
 
     loadUsers() {
-      this.userService.GetUsers().subscribe(users => {
+      this.userService.getUsersByRole(this.userRole).subscribe(users => {
         this.users = users;
       }, error => {
-        console.error('Failed to load users', error);
+        console.error('Failed to load users for role: ' + this.userRole, error);
       });
     }
 
