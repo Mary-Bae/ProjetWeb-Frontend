@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserService } from '../shared/user.service';
+import { UserService } from '../../shared/user.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,15 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-users.component.css']
 })
 export class AdminUsersComponent {
-
   users: any;
-  students: any
   successMessage: string | null = null
 
   constructor(private userService: UserService, private router:Router){
 
     this.loadUsers();
-    this.loadStudents();
  
   }
 
@@ -26,23 +23,17 @@ export class AdminUsersComponent {
     })
   }
 
-  loadStudents() {
-    this.userService.GetStudents().subscribe(x => {
-    this.students = x;
-    })
-  }
-
 
   edit(id: number) {
     if (id) {
-      this.router.navigate(['form-course', id]);
+      this.router.navigate(['form-user', id]);
     } else {
       console.error('Undefined course ID');
     }
   }
 
   del(id: number) {
-    if (confirm('Voulez-vous vraiment supprimer ce cours ?')) {
+    if (confirm('Voulez-vous vraiment supprimer cet utilisateur ? \nLa suppression sera définitive')) {
       this.userService.Del(id).subscribe(() => {    
           console.log('User deleted successfully');
           this.successMessage = "Utilisateur supprimé avec succès"
