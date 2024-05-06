@@ -33,7 +33,7 @@ export class TableCourseComponent  {
   }
 
   del(id: number) {
-    if (confirm('Voulez-vous vraiment supprimer ce cours ?')) {
+    if (confirm('Voulez-vous vraiment supprimer ce cours ? \nLa suppression sera définitive')) {
       this.courseService.Del(id).subscribe(() => {    
           console.log('Course deleted successfully');
           this.successMessage = "Cours supprimé avec succès"

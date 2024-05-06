@@ -27,6 +27,11 @@ export class UserService {
     return this.http.get<Array<UserModel>>(`https://localhost:7093/User/ByRole/${roleName}`, this.httpOptions);
   }
 
+  getUserByUserId(id: number)
+  {
+    return this.http.get<UserModel>("https://localhost:7093/User/ById?Id=" + id, this.httpOptions);
+  }
+
   GetStudents()
   {
     return this.http.get<Array<UserModel>>("https://localhost:7093/User/grades", this.httpOptions)

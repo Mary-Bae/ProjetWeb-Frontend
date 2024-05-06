@@ -15,8 +15,8 @@
                 <tr *ngFor="let user of users">
                     <td>{{ user.username }}</td>
                     <td>{{ user.roleName }}</td>
-                    <td><button type="button" class="btn btn-outline-warning"style="width: 90%;"(click)="edit(user.id)">Edit</button></td>
-                    <td><button type="button" class="btn btn-outline-danger"style="width: 90%;" (click)="del(user.id)">Delete</button></td>       
+                    <td><button type="button" class="btn btn-outline-warning"style="width: 100%;"(click)="edit(user.id)">Edit</button></td>
+                    <td><button type="button" class="btn btn-outline-danger"style="width: 100%;" (click)="del(user.id)">Delete</button></td>       
                 </tr>
             </tbody>
         </table>

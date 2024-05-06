@@ -26,14 +26,14 @@ export class AdminUsersComponent {
 
   edit(id: number) {
     if (id) {
-      this.router.navigate(['form-course', id]);
+      this.router.navigate(['form-user', id]);
     } else {
       console.error('Undefined course ID');
     }
   }
 
   del(id: number) {
-    if (confirm('Voulez-vous vraiment supprimer ce cours ?')) {
+    if (confirm('Voulez-vous vraiment supprimer cet utilisateur ? \nLa suppression sera définitive')) {
       this.userService.Del(id).subscribe(() => {    
           console.log('User deleted successfully');
           this.successMessage = "Utilisateur supprimé avec succès"
