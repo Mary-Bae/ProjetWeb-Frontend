@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserModel } from '../../shared/user.model';
 import { RoleModel } from '../../shared/role.model';
@@ -13,41 +13,21 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './add-user.component.html',
   styleUrls: ['./add-user.component.css']
 })
-export class AddUserComponent implements OnInit{
+export class AddUserComponent{
 
   model: UserModel;
   formUser: FormGroup;
   successMessage: string | null = null
-  currentUserId?: number;
   roles: RoleModel[] = [];
 
   constructor(private userService:UserService,private roleService:RoleService, private authService: AuthentificationService, private route: ActivatedRoute, private router: Router){
 
     this.formUser = new FormGroup({
       username: new FormControl('', Validators.required),
-      roleId: new FormControl('', Validators.required),
-      roleName: new FormControl('')
+      password: new FormControl('', Validators.required),
+      roleId: new FormControl('')
     });
-  }
-
-  ngOnInit() {
     this.loadRoles()
-    this.route.params.subscribe(params => {
-      const id = +params['id'];
-      if(id) {
-        this.currentUserId = id;  // Sauvegarde de l'ID
-        this.userService.getUserByUserId(this.currentUserId).subscribe(user => {
-          if (user) {
-              this.formUser.patchValue({
-                  username: user.username,
-                  roleId: user.roleId
-              });
-            }
-          },
-          error => console.error('Failed to fetch user by id:', error)
-        );
-      }
-    });
   }
 
       loadRoles() {
@@ -60,20 +40,34 @@ export class AddUserComponent implements OnInit{
 
       save(form: FormGroup) {
         let model = form.value as UserModel;
-        model.id = this.currentUserId;
-        if (this.currentUserId) {
-          this.authService.AssignRole(model.username, model.roleId).subscribe(
-            () => {
-              console.log("User updated successfully.");
-              this.router.navigate(['/admin-users']);
-            },
-            error => {
-              console.error("Failed to update user:", error);
-            }
-          );
-        }
-      }
-      
+
+        this.authService.Register(model.username, model.password)
+        .subscribe({
+          next: () => {
+              if(model.roleId && model.roleId !== -1){
+                  this.authService.AssignRole(model.username, model.roleId).subscribe({
+                      next: () => {
+                          console.log("User updated successfully.");
+                          this.formUser.reset();
+                          this.successMessage = "Nouvel utilisateur rajouté avec succès"
+                          setTimeout(() => this.successMessage = null, 2000);
+                      },
+                      error: (error) => {
+                          console.error("Failed to update user:", error);
+                      }
+                  });
+              } else {
+                  console.log("User updated successfully.");
+                  this.formUser.reset();
+                  this.successMessage = "Nouvel utilisateur avec le role guest rajouté avec succès."
+                  setTimeout(() => this.successMessage = null, 2000);
+              }
+          },
+          error: (error) => {
+              console.error("Failed to register user:", error);
+          }
+      });
+  }
     }
 
 
