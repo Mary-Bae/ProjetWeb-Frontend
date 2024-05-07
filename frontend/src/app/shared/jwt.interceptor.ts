@@ -15,11 +15,11 @@ export class JwtInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
         const isAuthenticated= this.AuthentificationService.isAuthenticated();
         if(isAuthenticated){
-            const token= sessionStorage.getItem("jwt");
+            const token= localStorage.getItem('jwt');
             req =req.clone({
                 setHeaders:{Authorization:'Bearer '+token}
             })
- 
+
             return next.handle(req).pipe(catchError(error => {
                 if (error instanceof HttpErrorResponse && !req.url.includes('login') && error.status === 401) {
                     return this.handleRefreshToken(req, next);
@@ -27,16 +27,16 @@ export class JwtInterceptor implements HttpInterceptor {
                  return throwError(error);
                
               }));
-           
+            }
+            return next.handle(req);
         }
-        return next.handle(req);
-    }
+
     handleRefreshToken(req: any, next: HttpHandler): any {
         return this.AuthentificationService.refreshToken().pipe(
             switchMap((response: any) => {
                 console.log("response", response)
               // Update the new token in localStorage
-              sessionStorage.setItem("jwt", response.token);
+              localStorage.setItem("jwt", response.token);
  
               // Retry the original request with the new token
               const clonedRequest = req.clone({

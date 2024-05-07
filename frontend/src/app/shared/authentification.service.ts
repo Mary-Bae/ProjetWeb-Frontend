@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
@@ -7,6 +7,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthentificationService {
+
+  token = localStorage.getItem('jwt');
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.token}`
+    })
+  }
 
   constructor(private http:HttpClient, public jwtHelper: JwtHelperService) {}
   
@@ -45,4 +53,9 @@ export class AuthentificationService {
     return localStorage.getItem('role');
   }
 
+  AssignRole(username: string, roleId: number) {
+    return this.http.post(`https://localhost:7093/Authentication/AssignRole?username=${username}&roleId=${roleId}`, {}, this.httpOptions);
+  }
+
 }
+ 

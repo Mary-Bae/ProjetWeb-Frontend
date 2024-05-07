@@ -23,4 +23,4 @@ export const authGuard: CanActivateFn = (route) => {
   }
   // Si toutes les vérifications passent, permettre l'accès à la route
   return true;
-};
+}; 

@@ -9,11 +9,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-form-user',
-  templateUrl: './form-user.component.html',
-  styleUrls: ['./form-user.component.css']
+  selector: 'app-add-user',
+  templateUrl: './add-user.component.html',
+  styleUrls: ['./add-user.component.css']
 })
-export class FormUserComponent implements OnInit{
+export class AddUserComponent implements OnInit{
 
   model: UserModel;
   formUser: FormGroup;
@@ -74,4 +74,8 @@ export class FormUserComponent implements OnInit{
         }
       }
       
-}
+    }
+
+
+
+
