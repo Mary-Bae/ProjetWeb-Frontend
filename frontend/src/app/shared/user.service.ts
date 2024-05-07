@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserModel } from './user.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -41,5 +42,6 @@ export class UserService {
   { 
     return this.http.delete<UserModel>(`https://localhost:7093/User/${id}`, this.httpOptions);
   }
+
 
 }

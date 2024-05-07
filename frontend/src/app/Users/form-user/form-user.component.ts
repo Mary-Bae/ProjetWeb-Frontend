@@ -4,6 +4,7 @@ import { UserModel } from '../../shared/user.model';
 import { RoleModel } from '../../shared/role.model';
 import { UserService } from '../../shared/user.service';
 import { RoleService } from '../../shared/role.service';
+import { AuthentificationService } from '../../shared/authentification.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
@@ -20,11 +21,12 @@ export class FormUserComponent implements OnInit{
   currentUserId?: number;
   roles: RoleModel[] = [];
 
-  constructor(private userService:UserService,private roleService:RoleService, private route: ActivatedRoute, private router: Router){
+  constructor(private userService:UserService,private roleService:RoleService, private authService: AuthentificationService, private route: ActivatedRoute, private router: Router){
 
     this.formUser = new FormGroup({
-      name: new FormControl({value: 'Disabled readonly input', disabled: true}, Validators.required),
+      username: new FormControl('', Validators.required),
       roleId: new FormControl('', Validators.required),
+      roleName: new FormControl('')
     });
   }
 
@@ -37,14 +39,16 @@ export class FormUserComponent implements OnInit{
         this.userService.getUserByUserId(this.currentUserId).subscribe(user => {
           if (user) {
               this.formUser.patchValue({
-                  name: user.username,
+                  username: user.username,
                   roleId: user.roleId
-                });
-              }
-            });
-          } 
-        });
+              });
+            }
+          },
+          error => console.error('Failed to fetch user by id:', error)
+        );
       }
+    });
+  }
 
       loadRoles() {
         this.roleService.GetRoles().subscribe(roles => {
@@ -58,21 +62,16 @@ export class FormUserComponent implements OnInit{
         let model = form.value as UserModel;
         model.id = this.currentUserId;
         if (this.currentUserId) {
-          //this.userService.updateUser(model).subscribe(
-            //() => {
-              //console.log("User updated successfully.");
-              //this.router.navigate(['/admin-users']);
-            //}
-          //);
-        } else {
-          //this.userService.Post(model).subscribe(
-           // () => {
-             // this.formUser.reset();
-              //this.successMessage = "Utilisateur rajouté avec succès"
-              //setTimeout(() => this.successMessage = null, 2000);
-           // }
-          //);
+          this.authService.AssignRole(model.username, model.roleId).subscribe(
+            () => {
+              console.log("User updated successfully.");
+              this.router.navigate(['/admin-users']);
+            },
+            error => {
+              console.error("Failed to update user:", error);
+            }
+          );
         }
       }
-
+      
 }

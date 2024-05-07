@@ -16,6 +16,7 @@ import { UnauthorizedPageComponent } from './unauthorized-page/unauthorized-page
 import { AdminUsersComponent } from './Users/admin-users/admin-users.component';
 import { AdminStudentsComponent } from './Users/admin-students/admin-students.component';
 import { FormUserComponent } from './Users/form-user/form-user.component';
+import { AddUserComponent } from './Users/add-user/add-user.component';
 
 export function tokenGetter(){
   return sessionStorage.getItem("jwt");
@@ -33,6 +34,7 @@ export function tokenGetter(){
     AdminUsersComponent,
     AdminStudentsComponent,
     FormUserComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
@@ -53,3 +55,4 @@ export function tokenGetter(){
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+ 
