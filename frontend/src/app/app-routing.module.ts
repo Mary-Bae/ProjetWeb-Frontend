@@ -7,7 +7,7 @@ import { authGuard } from './shared/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { UnauthorizedPageComponent } from './unauthorized-page/unauthorized-page.component';
 import { AdminUsersComponent } from './Users/admin-users/admin-users.component';
-import { AdminStudentsComponent } from './Users/admin-students/admin-students.component';
+import { AdminStudentsComponent } from './Student/admin-students/admin-students.component';
 import { FormUserComponent } from './Users/form-user/form-user.component';
 import { AddUserComponent } from './Users/add-user/add-user.component';
 

@@ -17,7 +17,7 @@ export class AdminStudentsComponent {
   }
 
   loadStudents() {
-    this.userService.GetStudents().subscribe(x => {
+    this.userService.GetStudentswithGrades().subscribe(x => {
     this.students = x;
     })
   }
