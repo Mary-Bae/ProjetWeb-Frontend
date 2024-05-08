@@ -24,9 +24,9 @@ export class AdminStudentsComponent {
 
   edit(id: number) {
     if (id) {
-      this.router.navigate(['form-course', id]);
+      this.router.navigate(['manage-student', id]);
     } else {
-      console.error('Undefined course ID');
+      console.error('Undefined Student ID');
     }
   }
 
