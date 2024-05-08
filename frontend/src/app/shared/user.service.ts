@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserModel } from './user.model';
-import { Observable } from 'rxjs';
+import { GradeModel } from './grade.model';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +35,7 @@ export class UserService {
 
   GetStudentswithGrades()
   {
-    return this.http.get<Array<UserModel>>("https://localhost:7093/User/grades", this.httpOptions)
+    return this.http.get<Array<GradeModel>>("https://localhost:7093/User/grades", this.httpOptions)
   }
 
   Del(id: number)

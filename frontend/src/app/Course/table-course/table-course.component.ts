@@ -13,9 +13,7 @@ export class TableCourseComponent  {
   successMessage: string | null = null
 
   constructor(private courseService: CourseService, private router:Router){
-
     this.loadCourses();
- 
   }
 
   loadCourses() {

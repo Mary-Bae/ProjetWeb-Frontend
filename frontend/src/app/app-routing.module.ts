@@ -23,7 +23,7 @@ const routes: Routes = [
   {path:"add-user", component:AddUserComponent, canActivate:[authGuard], data: { roles: ['admin'] }},
   {path:"form-user/:id", component:FormUserComponent, canActivate:[authGuard], data: { roles: ['admin'] }},
   {path:"admin-students", component:AdminStudentsComponent, canActivate:[authGuard], data: { roles: ['admin', 'instructor'] }},
-  {path:"manage-student", component:ManageStudentComponent, canActivate:[authGuard], data: { roles: ['admin', 'instructor'] }},
+  {path:"manage-student/:id", component:ManageStudentComponent, canActivate:[authGuard], data: { roles: ['admin', 'instructor'] }},
   {path:"login", component:LoginComponent},
   {path:"unauthorized-page", component:UnauthorizedPageComponent}
 ];

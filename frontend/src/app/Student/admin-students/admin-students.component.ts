@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 })
 export class AdminStudentsComponent {
   students: any
-  successMessage: string | null = null
 
   constructor(private userService: UserService, private router:Router){
 
@@ -22,9 +21,10 @@ export class AdminStudentsComponent {
     })
   }
 
-  edit(id: number) {
-    if (id) {
-      this.router.navigate(['manage-student', id]);
+  edit(userId: number) {
+    console.log(userId)
+    if (userId) {
+      this.router.navigate(['manage-student', userId]);
     } else {
       console.error('Undefined Student ID');
     }
