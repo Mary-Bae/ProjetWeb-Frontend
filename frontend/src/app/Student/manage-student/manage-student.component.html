@@ -14,10 +14,17 @@
                 <option *ngFor="let grade of grades" [value]="grade.id">{{grade.gradeName}}</option>
               </select>
             </div>      
-              <button type="submit" class="btn btn-outline-primary">Save grade</button>
+              <button type="submit" class="btn btn-outline-success">Save grade</button>
               <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
               <p></p>
-              <button type="button" class="btn btn-outline-info"style="width: 100%;"(click)="unroll()">Unroll courses</button>     
+              <div class="row">
+                <div class="col-6">
+                  <button type="button" class="btn btn-outline-primary" style="width: 100%;" (click)="unroll()">Unroll courses</button>
+                </div>
+                <div class="col-6">
+                  <button type="button" class="btn btn-outline-primary" style="width: 100%;" (click)="return()">Back</button>
+                </div>
+              </div>
           </form>
     </div>
     <div class="col"></div>

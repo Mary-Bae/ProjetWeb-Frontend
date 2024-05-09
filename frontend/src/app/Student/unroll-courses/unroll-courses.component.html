@@ -1,7 +1,9 @@
 <div class="table-container">
     <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+    <h1>{{ studentName }}</h1>
+    <h2>Level : {{ gradeName }}</h2>
     <table class="table table-hover table-bordered caption-top">
-        <caption>List of available courses</caption>
+        <caption>Unroll courses</caption>
         <thead class="table-dark">
             <tr>
                 <th scope="col">Name</th>
@@ -19,8 +21,14 @@
                 <td>{{ course.schedule }}</td>
                 <td>{{ course.username }}</td>
                 <td>{{ course.description }}</td>
-                <td><input type="checkbox" aria-label="Checkbox for following text input"> Choix du cours</td>       
+                <td>
+                    <input type="checkbox"  [(ngModel)]="course.isSelected" id="course{{course.id}}">
+                    Choix du cours
+                  </td>    
             </tr>
         </tbody>
     </table>
+    <div>
+        <button type="button" class="btn btn-outline-success" (click)="confirmSelection()">Confirm Selection</button>
+    </div>
 </div>

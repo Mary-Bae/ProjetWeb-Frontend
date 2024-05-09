@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserService } from '../../shared/user.service';
+import { UserService } from '../../shared/User/user.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -25,6 +25,15 @@ export class AdminStudentsComponent {
     console.log(userId)
     if (userId) {
       this.router.navigate(['manage-student', userId]);
+    } else {
+      console.error('Undefined Student ID');
+    }
+  }
+
+  unroll(userId: number) {
+    console.log(userId)
+    if (userId) {
+      this.router.navigate(['unroll-courses', userId]);
     } else {
       console.error('Undefined Student ID');
     }

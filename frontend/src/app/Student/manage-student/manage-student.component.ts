@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { GradeModel } from '../../shared/grade.model';
-import { GradeService } from '../../shared/grade.service';
+import { GradeModel } from '../../shared/Grade/grade.model';
+import { GradeService } from '../../shared/Grade/grade.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -35,7 +35,6 @@ export class ManageStudentComponent implements OnInit {
                       this.formUser.patchValue({
                           username: user.username,
                           gradeId: user.gradeId
-                          
                       });
                   }
               },
@@ -70,10 +69,12 @@ export class ManageStudentComponent implements OnInit {
 
   unroll() {
     if (this.currentUserId) {
-      this.router.navigate(['unroll-courses', this.currentUserId]);
-    } else {
-      console.error('Undefined Student ID');
+      this.router.navigate(['/unroll-courses', this.currentUserId]);
     }
+  }
+
+  return(){
+    this.router.navigate(['/admin-students']);
   }
 
 }
