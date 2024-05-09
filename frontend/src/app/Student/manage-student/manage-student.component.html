@@ -15,7 +15,7 @@
                 <option *ngFor="let grade of grades" [value]="grade.id">{{grade.gradeName}}</option>
               </select>
             </div>      
-              <button type="submit"[disabled]="formUser.invalid" class="btn btn-outline-primary">Save</button>
+              <button type="submit" class="btn btn-outline-primary">Save</button>
               <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>         
           </form>
     </div>
