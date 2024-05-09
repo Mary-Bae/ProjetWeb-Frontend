@@ -13,3 +13,7 @@ h2{
     color:green;
     font-weight: bold;
   }
+
+  .btn-outline-success{
+    margin-right: 5%
+  }

@@ -3,6 +3,7 @@ import { CourseService } from '../../shared/Course/course.service';
 import { GradeService } from '../../shared/Grade/grade.service';
 import { UnrollService } from '../../shared/Unrollement/unroll.service';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-unroll-courses',
@@ -16,10 +17,10 @@ export class UnrollCoursesComponent implements OnInit{
   userId: number;
   courses: any[];
   enrolledCourseIds: number[] = [];
-  successMessage: string | null = null
+  successMessage: string
 
   constructor(private courseService: CourseService, private gradeService: GradeService,
-    private unrollService: UnrollService, private route: ActivatedRoute){}
+    private unrollService: UnrollService, private route: ActivatedRoute, private location: Location){}
 
   loadCourses() {
     this.courseService.Get().subscribe(courses => {
@@ -50,12 +51,34 @@ export class UnrollCoursesComponent implements OnInit{
           course.isSelected = this.enrolledCourseIds.includes(course.id);
       });
   },
-      error: (error) => console.error('Failed to found enrolled courses:', error)
+      error: (error) => console.error(error)
     });
   }
 }
 
   confirmSelection() {
-    throw new Error('Method not implemented.');
-    }
+    this.courses.forEach(course => {
+      if (course.isSelected && !this.enrolledCourseIds.includes(course.id)) {
+
+        this.unrollService.addUnrollement(this.userId, course.id).subscribe({
+          next: () => {
+          },
+          error: (error) => console.error(error)
+        });
+      } else if (!course.isSelected && this.enrolledCourseIds.includes(course.id)) {
+        this.unrollService.delUnrollement(this.userId, course.id).subscribe({
+          next: () => {
+            console.log(`Deleted ${course.id}`);
+          },
+          error: (error) => console.error(error)
+        });
+      }
+    });
+    this.successMessage = "Enrollement réalisé avec succès"
+    setTimeout(() => this.successMessage = null, 2000);
+  }
+
+  goBack() {
+    this.location.back();
+  }
 }
