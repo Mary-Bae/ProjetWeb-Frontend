@@ -30,4 +30,13 @@ export class AdminStudentsComponent {
     }
   }
 
+  unroll(userId: number) {
+    console.log(userId)
+    if (userId) {
+      this.router.navigate(['unroll-courses', userId]);
+    } else {
+      console.error('Undefined Student ID');
+    }
+  }
+
 }

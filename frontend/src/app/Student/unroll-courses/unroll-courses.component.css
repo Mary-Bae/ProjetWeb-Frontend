@@ -1,3 +1,15 @@
 .table-container {
     margin: 0 5%;
   }
+
+  h1, h2{
+    color:green;
+}
+h2{
+    margin-bottom: 5%;
+}
+
+.success-message {
+    color:green;
+    font-weight: bold;
+  }

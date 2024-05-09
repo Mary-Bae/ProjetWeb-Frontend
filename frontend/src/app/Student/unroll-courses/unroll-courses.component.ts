@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CourseModel } from '../../shared/course.model';
 import { CourseService } from '../../shared/course.service';
-import { UserModel } from '../../shared/user.model';
-import { UserService } from '../../shared/user.service';
+import { GradeModel } from '../../shared/grade.model';
+import { GradeService } from '../../shared/grade.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -11,12 +11,21 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './unroll-courses.component.html',
   styleUrls: ['./unroll-courses.component.css']
 })
-export class UnrollCoursesComponent {
-
+export class UnrollCoursesComponent implements OnInit{
+goBack() {
+throw new Error('Method not implemented.');
+}
+confirmSelection() {
+throw new Error('Method not implemented.');
+}
+  studentName: string;
+  gradeName: string;
+  grade: string;
+  userId: number;
   courses: any;
   successMessage: string | null = null
 
-  constructor(private courseService: CourseService, private router:Router){
+  constructor(private courseService: CourseService, private gradeService: GradeService, private route: ActivatedRoute, private router:Router){
     this.loadCourses();
   }
 
@@ -25,6 +34,18 @@ export class UnrollCoursesComponent {
       this.courses = x;
     })
   }
+
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.userId = +params['id'];
+      this.gradeService.GetGradesByUser(this.userId).subscribe({
+        next: (user) => {
+          this.studentName = user.username;
+          this.gradeName = user.gradeName;
+        }
+    });
+  }
+)}
 
   edit(id: number) {
     if (id) {

@@ -1,7 +1,9 @@
 <div class="table-container">
     <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+    <h1>{{ studentName }}</h1>
+    <h2>Level : {{ gradeName }}</h2>
     <table class="table table-hover table-bordered caption-top">
-        <caption>List of available courses</caption>
+        <caption>Unroll courses</caption>
         <thead class="table-dark">
             <tr>
                 <th scope="col">Name</th>
@@ -23,4 +25,7 @@
             </tr>
         </tbody>
     </table>
+    <div>
+        <button type="button" class="btn btn-outline-success" (click)="confirmSelection()">Confirm Selection</button>
+    </div>
 </div>
