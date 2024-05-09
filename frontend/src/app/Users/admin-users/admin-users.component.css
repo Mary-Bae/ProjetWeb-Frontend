@@ -2,7 +2,12 @@
   margin: 0 20%;
 }
 
-  .success-message {
-    color: green;
-    font-weight: bold;
-  }
+h1{
+  color:green;
+  margin-bottom: 2%;
+}
+
+.success-message {
+  color: green;
+  font-weight: bold;
+}

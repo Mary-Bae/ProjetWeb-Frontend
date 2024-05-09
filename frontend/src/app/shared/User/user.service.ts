@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserModel } from './user.model';
-import { GradeModel } from './grade.model';
+import { GradeModel } from '../Grade/grade.model';
 
 @Injectable({
   providedIn: 'root'

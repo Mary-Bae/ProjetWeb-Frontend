@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CourseModel } from '../../shared/course.model';
-import { CourseService } from '../../shared/course.service';
-import { UserModel } from '../../shared/user.model';
-import { UserService } from '../../shared/user.service';
+import { CourseModel } from '../../shared/Course/course.model';
+import { CourseService } from '../../shared/Course/course.service';
+import { UserModel } from '../../shared/User/user.model';
+import { UserService } from '../../shared/User/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

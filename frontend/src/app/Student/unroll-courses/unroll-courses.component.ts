@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CourseModel } from '../../shared/course.model';
-import { CourseService } from '../../shared/course.service';
-import { GradeModel } from '../../shared/grade.model';
-import { GradeService } from '../../shared/grade.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { CourseService } from '../../shared/Course/course.service';
+import { GradeService } from '../../shared/Grade/grade.service';
+import { UnrollService } from '../../shared/Unrollement/unroll.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-unroll-courses',
@@ -12,32 +10,28 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./unroll-courses.component.css']
 })
 export class UnrollCoursesComponent implements OnInit{
-goBack() {
-throw new Error('Method not implemented.');
-}
-confirmSelection() {
-throw new Error('Method not implemented.');
-}
+
   studentName: string;
   gradeName: string;
-  grade: string;
   userId: number;
-  courses: any;
+  courses: any[];
+  enrolledCourseIds: number[] = [];
   successMessage: string | null = null
 
-  constructor(private courseService: CourseService, private gradeService: GradeService, private route: ActivatedRoute, private router:Router){
-    this.loadCourses();
-  }
+  constructor(private courseService: CourseService, private gradeService: GradeService,
+    private unrollService: UnrollService, private route: ActivatedRoute){}
 
   loadCourses() {
-    this.courseService.Get().subscribe(x => {
-      this.courses = x;
-    })
+    this.courseService.Get().subscribe(courses => {
+      this.courses = courses;
+      this.loadEnrolledCourses();
+    });
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.userId = +params['id'];
+      this.loadCourses();
       this.gradeService.GetGradesByUser(this.userId).subscribe({
         next: (user) => {
           this.studentName = user.username;
@@ -47,22 +41,21 @@ throw new Error('Method not implemented.');
   }
 )}
 
-  edit(id: number) {
-    if (id) {
-      this.router.navigate(['form-course', id]);
-    } else {
-      console.error('Undefined course ID');
-    }
+  loadEnrolledCourses() {
+    if (this.userId) {
+    this.unrollService.getUnrolledCourses(this.userId).subscribe({
+      next: (enrolledCourses) => {
+        this.enrolledCourseIds = enrolledCourses.map(course => course.courseId);
+        this.courses.forEach(course => {
+          course.isSelected = this.enrolledCourseIds.includes(course.id);
+      });
+  },
+      error: (error) => console.error('Failed to found enrolled courses:', error)
+    });
   }
+}
 
-  del(id: number) {
-    if (confirm('Voulez-vous vraiment supprimer ce cours ? \nLa suppression sera définitive')) {
-      this.courseService.Del(id).subscribe(() => {    
-          console.log('Course deleted successfully');
-          this.successMessage = "Cours supprimé avec succès"
-          setTimeout(() => this.successMessage = null, 2000);
-          this.loadCourses();
-        })
-      }     
-   }
+  confirmSelection() {
+    throw new Error('Method not implemented.');
+    }
 }

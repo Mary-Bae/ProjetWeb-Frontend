@@ -1,12 +1,12 @@
 .table-container {
-    margin: 0 5%;
+    margin: 0 10%;
   }
 
   h1, h2{
     color:green;
 }
 h2{
-    margin-bottom: 5%;
+    margin-bottom: 2%;
 }
 
 .success-message {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { GradeModel } from '../../shared/grade.model';
-import { GradeService } from '../../shared/grade.service';
+import { GradeModel } from '../../shared/Grade/grade.model';
+import { GradeService } from '../../shared/Grade/grade.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

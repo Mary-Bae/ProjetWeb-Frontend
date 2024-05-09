@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserModel } from '../../shared/user.model';
-import { RoleModel } from '../../shared/role.model';
-import { UserService } from '../../shared/user.service';
-import { RoleService } from '../../shared/role.service';
+import { UserModel } from '../../shared/User/user.model';
+import { RoleModel } from '../../shared/Role/role.model';
+import { UserService } from '../../shared/User/user.service';
+import { RoleService } from '../../shared/Role/role.service';
 import { AuthentificationService } from '../../shared/authentification.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
