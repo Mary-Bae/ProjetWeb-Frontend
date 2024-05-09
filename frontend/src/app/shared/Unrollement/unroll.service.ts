@@ -20,4 +20,13 @@ export class UnrollService {
   { 
     return this.http.get<UnrollModel[]>("https://localhost:7093/Unroll/GetUnrollByUser/" + id, this.httpOptions);
   }
+
+  addUnrollement(userId: number, courseId: number)
+  {
+    return this.http.post(`https://localhost:7093/Unroll?userId=${userId}&courseId=${courseId}`, {}, this.httpOptions);
+  }
+  delUnrollement(userId: number, courseId: number)
+  {
+    return this.http.delete(`https://localhost:7093/Unroll?userId=${userId}&courseId=${courseId}`, this.httpOptions);
+  }
 }
