@@ -12,6 +12,7 @@ import { FormUserComponent } from './Users/form-user/form-user.component';
 import { AddUserComponent } from './Users/add-user/add-user.component';
 import { ManageStudentComponent } from './Student/manage-student/manage-student.component';
 import { UnrollCoursesComponent } from './Student/unroll-courses/unroll-courses.component';
+import { DashboardStudentComponent } from './DashboardStudent/dashboard-student/dashboard-student.component';
 
 
 
@@ -25,7 +26,8 @@ const routes: Routes = [
   {path:"form-user/:id", component:FormUserComponent, canActivate:[authGuard], data: { roles: ['admin'] }},
   {path:"admin-students", component:AdminStudentsComponent, canActivate:[authGuard], data: { roles: ['admin', 'instructor'] }},
   {path:"manage-student/:id", component:ManageStudentComponent, canActivate:[authGuard], data: { roles: ['admin', 'instructor'] }},
-  {path:"unroll-courses/:id", component:UnrollCoursesComponent, canActivate:[authGuard], data: { roles: ['admin', 'instructor'] }},
+  {path:"unroll-courses/:id", component:UnrollCoursesComponent, canActivate:[authGuard], data: { roles: ['admin', 'instructor', 'student'] }},
+  {path:"dashboard-student/:id", component:DashboardStudentComponent, canActivate:[authGuard], data: { roles: ['student'] }},
   {path:"login", component:LoginComponent},
   {path:"unauthorized-page", component:UnauthorizedPageComponent}
 ];
