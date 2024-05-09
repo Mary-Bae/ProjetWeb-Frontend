@@ -14,9 +14,11 @@ import { JwtInterceptor, JwtModule } from '@auth0/angular-jwt';
 import { HomeComponent } from './home/home.component';
 import { UnauthorizedPageComponent } from './unauthorized-page/unauthorized-page.component';
 import { AdminUsersComponent } from './Users/admin-users/admin-users.component';
-import { AdminStudentsComponent } from './Users/admin-students/admin-students.component';
+import { AdminStudentsComponent } from './Student/admin-students/admin-students.component';
 import { FormUserComponent } from './Users/form-user/form-user.component';
 import { AddUserComponent } from './Users/add-user/add-user.component';
+import { ManageStudentComponent } from './Student/manage-student/manage-student.component';
+import { UnrollCoursesComponent } from './Student/unroll-courses/unroll-courses.component';
 
 export function tokenGetter(){
   return sessionStorage.getItem("jwt");
@@ -34,7 +36,9 @@ export function tokenGetter(){
     AdminUsersComponent,
     AdminStudentsComponent,
     FormUserComponent,
-    AddUserComponent
+    AddUserComponent,
+    ManageStudentComponent,
+    UnrollCoursesComponent
   ],
   imports: [
     BrowserModule,

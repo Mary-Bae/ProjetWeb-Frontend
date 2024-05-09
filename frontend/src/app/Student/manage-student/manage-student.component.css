@@ -1,0 +1,15 @@
+.btn.btn-outline-primary, .btn.btn-outline-info {
+    display: inline-block;
+    margin-top: 5%;
+    width: 100%;
+}
+
+h1{
+    color:green;
+    margin-bottom: 5%;
+}
+
+.success-message {
+    color:green;
+    font-weight: bold;
+  }

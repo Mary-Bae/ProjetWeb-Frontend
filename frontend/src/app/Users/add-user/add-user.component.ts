@@ -23,8 +23,11 @@ export class AddUserComponent{
   constructor(private userService:UserService,private roleService:RoleService, private authService: AuthentificationService, private route: ActivatedRoute, private router: Router){
 
     this.formUser = new FormGroup({
-      username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
+      username: new FormControl("", [Validators.required, Validators.minLength(4)
+      ]),
+      password: new FormControl("", [Validators.required,
+        Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{9,}$")
+      ]),
       roleId: new FormControl('')
     });
     this.loadRoles()

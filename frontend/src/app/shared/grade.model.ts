@@ -1,7 +1,9 @@
 export class GradeModel{
 
     id: number;
-    username: string;
     gradeName: string;
+    userId: number;
+    gradeId: number;
+    username: string;
 
 }

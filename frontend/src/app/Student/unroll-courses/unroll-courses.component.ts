@@ -1,13 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CourseModel } from '../../shared/course.model';
 import { CourseService } from '../../shared/course.service';
-import { Router } from '@angular/router';
+import { UserModel } from '../../shared/user.model';
+import { UserService } from '../../shared/user.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-table-course',
-  templateUrl: './table-course.component.html',
-  styleUrls: ['./table-course.component.css']
+  selector: 'app-unroll-courses',
+  templateUrl: './unroll-courses.component.html',
+  styleUrls: ['./unroll-courses.component.css']
 })
-export class TableCourseComponent  {
+export class UnrollCoursesComponent {
 
   courses: any;
   successMessage: string | null = null
