@@ -1,0 +1,26 @@
+<div class="table-container">
+    <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+    <table class="table table-hover table-bordered caption-top">
+        <caption>List of available courses</caption>
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Level</th>
+                <th scope="col">Schedule</th>
+                <th scope="col">Teacher</th>
+                <th scope="col">Description</th>
+                <th scope="col">Unroll Course</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let course of courses">
+                <td>{{ course.name }}</td>
+                <td>{{ course.levelName }}</td>
+                <td>{{ course.schedule }}</td>
+                <td>{{ course.username }}</td>
+                <td>{{ course.description }}</td>
+                <td><input type="checkbox" aria-label="Checkbox for following text input"> Choix du cours</td>       
+            </tr>
+        </tbody>
+    </table>
+</div>

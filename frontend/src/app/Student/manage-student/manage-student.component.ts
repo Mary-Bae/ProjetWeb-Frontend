@@ -10,7 +10,6 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./manage-student.component.css']
 })
 export class ManageStudentComponent implements OnInit {
-  model: GradeModel;
   formUser: FormGroup;
   successMessage: string | null = null
   currentUserId?: number;
@@ -68,4 +67,13 @@ export class ManageStudentComponent implements OnInit {
       });
     }
   }
+
+  unroll() {
+    if (this.currentUserId) {
+      this.router.navigate(['unroll-courses', this.currentUserId]);
+    } else {
+      console.error('Undefined Student ID');
+    }
+  }
+
 }

@@ -18,6 +18,7 @@ import { AdminStudentsComponent } from './Student/admin-students/admin-students.
 import { FormUserComponent } from './Users/form-user/form-user.component';
 import { AddUserComponent } from './Users/add-user/add-user.component';
 import { ManageStudentComponent } from './Student/manage-student/manage-student.component';
+import { UnrollCoursesComponent } from './Student/unroll-courses/unroll-courses.component';
 
 export function tokenGetter(){
   return sessionStorage.getItem("jwt");
@@ -36,7 +37,8 @@ export function tokenGetter(){
     AdminStudentsComponent,
     FormUserComponent,
     AddUserComponent,
-    ManageStudentComponent
+    ManageStudentComponent,
+    UnrollCoursesComponent
   ],
   imports: [
     BrowserModule,

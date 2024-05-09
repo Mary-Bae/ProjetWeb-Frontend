@@ -3,7 +3,6 @@
     <div class="col">
       <h1>Update student</h1>
       <p></p>
-      <p></p>
         <form [formGroup]="formUser" (ngSubmit)="save(formUser)">
             <div class="form-group">
               <label for="exampleFormControlInput1">Username</label>
@@ -15,8 +14,10 @@
                 <option *ngFor="let grade of grades" [value]="grade.id">{{grade.gradeName}}</option>
               </select>
             </div>      
-              <button type="submit" class="btn btn-outline-primary">Save</button>
-              <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>         
+              <button type="submit" class="btn btn-outline-primary">Save grade</button>
+              <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+              <p></p>
+              <button type="button" class="btn btn-outline-info"style="width: 100%;"(click)="unroll()">Unroll courses</button>     
           </form>
     </div>
     <div class="col"></div>
