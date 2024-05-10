@@ -6,3 +6,12 @@
     color:green;
     margin-bottom: 2%;
   }
+
+  .btn.btn-outline-success {
+    display: inline-block;
+    width: 100%;
+}
+
+.list-group, .list-group-flush{
+    width: 15%;
+}

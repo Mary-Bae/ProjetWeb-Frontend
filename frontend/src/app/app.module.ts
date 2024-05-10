@@ -22,6 +22,7 @@ import { ManageStudentComponent } from './Student/manage-student/manage-student.
 import { UnrollCoursesComponent } from './Student/unroll-courses/unroll-courses.component';
 import { DashboardStudentComponent } from './Dashboard/dashboard-student/dashboard-student.component';
 import { DashboardTeacherComponent } from './Dashboard/dashboard-teacher/dashboard-teacher.component';
+import { DashboardAdminComponent } from './Dashboard/dashboard-admin/dashboard-admin.component';
 
 export function tokenGetter(){
   return sessionStorage.getItem("jwt");
@@ -43,7 +44,8 @@ export function tokenGetter(){
     ManageStudentComponent,
     UnrollCoursesComponent,
     DashboardStudentComponent,
-    DashboardTeacherComponent
+    DashboardTeacherComponent,
+    DashboardAdminComponent
   ],
   imports: [
     BrowserModule,

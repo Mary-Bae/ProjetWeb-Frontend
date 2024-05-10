@@ -8,6 +8,7 @@
                 <th scope="col">Level</th>
                 <th scope="col">Schedule</th>
                 <th scope="col">Description</th>
+                <th scope="col">Load Students</th>
             </tr>
         </thead>
         <tbody>
@@ -15,8 +16,18 @@
                 <td>{{ course.name }}</td>
                 <td>{{ course.levelName }}</td>
                 <td>{{ course.schedule }}</td>
-                <td>{{ course.description }}</td>     
+                <td>{{ course.description }}</td>
+                <td><button (click)="onSelectCourse(course.id)" class="btn btn-outline-success">Students</button></td>
             </tr>
         </tbody>
     </table>
-</div>
+
+    <div *ngIf="students.length > 0">
+        <h4>Students registered for this course :</h4>
+        <ul class="list-group list-group-flush">
+            <li *ngFor="let student of students" class="list-group-item">
+                {{ student.username }}
+            </li>
+        </ul>
+    </div>
+    </div>
