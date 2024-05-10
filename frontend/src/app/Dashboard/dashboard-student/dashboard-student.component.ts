@@ -6,7 +6,6 @@ import { UnrollModel } from 'src/app/shared/Unrollement/unroll.model';
 import { CourseService } from 'src/app/shared/Course/course.service';
 import { UserService } from 'src/app/shared/User/user.service';
 import { GradeService } from '../../shared/Grade/grade.service';
-import { GradeModel } from '../../shared/Grade/grade.model';
 
 
 @Component({

@@ -42,5 +42,8 @@ export class CourseService {
   { 
     return this.http.delete<CourseModel>(`https://localhost:7093/Course/${id}`, this.httpOptions);
   }
+  getCoursesByInstructor(Id: number) {
+    return this.http.get<CourseModel[]>(`https://localhost:7093/Course/ByTeacher/${Id}`, this.httpOptions);
+}
   
 }
