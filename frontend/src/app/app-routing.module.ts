@@ -12,7 +12,9 @@ import { FormUserComponent } from './Users/form-user/form-user.component';
 import { AddUserComponent } from './Users/add-user/add-user.component';
 import { ManageStudentComponent } from './Student/manage-student/manage-student.component';
 import { UnrollCoursesComponent } from './Student/unroll-courses/unroll-courses.component';
-import { DashboardStudentComponent } from './DashboardStudent/dashboard-student/dashboard-student.component';
+import { DashboardStudentComponent } from './Dashboard/dashboard-student/dashboard-student.component';
+import { DashboardTeacherComponent } from './Dashboard/dashboard-teacher/dashboard-teacher.component';
+import { DashboardAdminComponent } from './Dashboard/dashboard-admin/dashboard-admin.component';
 
 
 
@@ -27,7 +29,9 @@ const routes: Routes = [
   {path:"admin-students", component:AdminStudentsComponent, canActivate:[authGuard], data: { roles: ['admin', 'instructor'] }},
   {path:"manage-student/:id", component:ManageStudentComponent, canActivate:[authGuard], data: { roles: ['admin', 'instructor'] }},
   {path:"unroll-courses/:id", component:UnrollCoursesComponent, canActivate:[authGuard], data: { roles: ['admin', 'instructor', 'student'] }},
-  {path:"dashboard-student/:id", component:DashboardStudentComponent, canActivate:[authGuard], data: { roles: ['student'] }},
+  {path:"dashboard-student/:username", component:DashboardStudentComponent, canActivate:[authGuard], data: { roles: ['student'] }},
+  {path:"dashboard-teacher/:username", component:DashboardTeacherComponent, canActivate:[authGuard], data: { roles: ['instructor'] }},
+  {path:"dashboard-admin/:username", component:DashboardAdminComponent, canActivate:[authGuard], data: { roles: ['admin'] }},
   {path:"login", component:LoginComponent},
   {path:"unauthorized-page", component:UnauthorizedPageComponent}
 ];

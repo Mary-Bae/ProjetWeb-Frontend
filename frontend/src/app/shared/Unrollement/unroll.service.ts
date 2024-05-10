@@ -29,4 +29,7 @@ export class UnrollService {
   {
     return this.http.delete(`https://localhost:7093/Unroll?userId=${userId}&courseId=${courseId}`, this.httpOptions);
   }
+  getStudentsByCourse(courseId: number) {
+    return this.http.get<UnrollModel[]>("https://localhost:7093/Unroll/StudentsByCourse/" + courseId, this.httpOptions);
+  }
 }
