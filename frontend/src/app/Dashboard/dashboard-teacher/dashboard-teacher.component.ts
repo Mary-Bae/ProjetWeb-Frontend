@@ -45,7 +45,7 @@ export class DashboardTeacherComponent implements OnInit {
     });
   }
 
-  onSelectCourse(courseId: number) {
+  SelectCourse(courseId: number) {
     this.selectedCourseId = courseId;
     this.loadStudents(this.selectedCourseId);
   }

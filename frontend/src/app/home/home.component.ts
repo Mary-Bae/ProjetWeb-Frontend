@@ -23,7 +23,10 @@ export class HomeComponent {
       this.router.navigate([`/dashboard-student/${username}`]);
     } else if (role === 'instructor') {
       this.router.navigate([`/dashboard-teacher/${username}`]);
-    } else {
+    } else if (role === 'admin') {
+      this.router.navigate([`/dashboard-admin/${username}`]);
+    }
+    else {
       this.router.navigate(['/']);
     }
   }
