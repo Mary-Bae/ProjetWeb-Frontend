@@ -32,6 +32,9 @@ export class UserService {
   {
     return this.http.get<UserModel>("https://localhost:7093/User/ById?Id=" + id, this.httpOptions);
   }
+  getUserByUsername(username: string) {
+    return this.http.get<UserModel>(`https://localhost:7093/User/ByUsername/${username}`);
+  }
 
   GetStudentswithGrades()
   {

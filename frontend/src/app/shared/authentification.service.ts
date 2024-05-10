@@ -45,7 +45,9 @@ export class AuthentificationService {
 
   decodeAndStoreRole(token: string): void {
     const decodedToken = this.jwtHelper.decodeToken(token);
+    const username = decodedToken['sub'];
     const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+    localStorage.setItem('username', username);
     localStorage.setItem('role', role);
   }
 
