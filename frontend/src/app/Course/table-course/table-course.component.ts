@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 export class TableCourseComponent  {
 
   courses: any;
-  successMessage: string | null = null
+  successMessage: string;
+  errorMessage: string;
 
   constructor(private courseService: CourseService, private router:Router){
     this.loadCourses();
@@ -37,7 +38,12 @@ export class TableCourseComponent  {
           this.successMessage = "Cours supprimé avec succès"
           setTimeout(() => this.successMessage = null, 2000);
           this.loadCourses();
-        })
-      }     
+        },
+        error => {
+          console.error("Failed to delete course:", error);
+          this.errorMessage = error.error.message;
+          setTimeout(() => this.errorMessage = null, 3000);
+        }
+      )}     
    }
 }

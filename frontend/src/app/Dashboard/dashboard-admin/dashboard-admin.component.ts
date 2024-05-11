@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CourseService } from 'src/app/shared/Course/course.service';
-import { UserService } from 'src/app/shared/User/user.service';
 import { CourseModel } from 'src/app/shared/Course/course.model';
 import { UnrollModel } from 'src/app/shared/Unrollement/unroll.model';
 import { UnrollService } from 'src/app/shared/Unrollement/unroll.service';
@@ -18,8 +17,7 @@ export class DashboardAdminComponent implements OnInit {
   courses: CourseModel[] = [];
   students: UnrollModel[] = [];
 
-  constructor(private route: ActivatedRoute, private courseService: CourseService,  
-    private userService:  UserService, private unrollService: UnrollService) {}
+  constructor(private route: ActivatedRoute, private courseService: CourseService, private unrollService: UnrollService) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {

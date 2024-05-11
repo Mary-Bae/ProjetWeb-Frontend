@@ -23,7 +23,8 @@
             <div>
                 <button type="submit"[disabled]="formUser.invalid" class="btn btn-outline-primary">Save</button>
             </div>   
-              <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>         
+              <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>  
+              <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>       
           </form>
     </div>
     <div class="col"></div>

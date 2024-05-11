@@ -17,7 +17,8 @@ export class FormUserComponent implements OnInit{
 
   model: UserModel;
   formUser: FormGroup;
-  successMessage: string | null = null
+  successMessage: string;
+  errorMessage: string;
   currentUserId?: number;
   roles: RoleModel[] = [];
 
@@ -69,6 +70,8 @@ export class FormUserComponent implements OnInit{
             },
             error => {
               console.error("Failed to update user:", error);
+              this.errorMessage = error.error.message;
+              setTimeout(() => this.errorMessage = null, 3000);
             }
           );
         }
