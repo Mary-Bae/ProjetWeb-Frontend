@@ -33,7 +33,8 @@
               <textarea formControlName="description" class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
             </div>         
               <button type="submit"[disabled]="formCourse.invalid" class="btn btn-outline-primary">Save</button>
-              <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>         
+              <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+              <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>          
           </form>
     </div>
     <div class="col"></div>

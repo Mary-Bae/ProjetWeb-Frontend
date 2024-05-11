@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserModel } from '../../shared/User/user.model';
 import { RoleModel } from '../../shared/Role/role.model';
-import { UserService } from '../../shared/User/user.service';
 import { RoleService } from '../../shared/Role/role.service';
 import { AuthentificationService } from '../../shared/authentification.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,10 +16,11 @@ export class AddUserComponent{
 
   model: UserModel;
   formUser: FormGroup;
-  successMessage: string | null = null
+  successMessage: string
+  errorMessage: string
   roles: RoleModel[] = [];
 
-  constructor(private userService:UserService,private roleService:RoleService, private authService: AuthentificationService, private route: ActivatedRoute, private router: Router){
+  constructor(private roleService:RoleService, private authService: AuthentificationService, private route: ActivatedRoute, private router: Router){
 
     this.formUser = new FormGroup({
       username: new FormControl("", [Validators.required, Validators.minLength(4)
@@ -57,6 +57,7 @@ export class AddUserComponent{
                       },
                       error: (error) => {
                           console.error("Failed to update user:", error);
+                          this.errorMessage = error.error.message;
                       }
                   });
               } else {
@@ -68,6 +69,7 @@ export class AddUserComponent{
           },
           error: (error) => {
               console.error("Failed to register user:", error);
+              this.errorMessage = error.error.message;
           }
       });
   }

@@ -38,7 +38,7 @@
                 <button [disabled]="loginForm.invalid" type="button" class="btn btn-primary"(click)="register()">Register</button>
             </div>
           </form>
-          <div *ngIf="loginError" class="text-danger">{{ loginError }}</div>
+          <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>     
     </div>
     <div class="col"></div>
 </div>

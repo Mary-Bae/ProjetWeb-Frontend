@@ -14,7 +14,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class FormCourseComponent implements OnInit {
 model: CourseModel;
 formCourse: FormGroup;
-successMessage: string | null = null
+successMessage: string;
+errorMessage: string;
 currentCourseId?: number;
 userRole: string = 'instructor';
 
@@ -67,6 +68,10 @@ constructor(private courseService:CourseService, private userService:UserService
           () => {
             console.log("Course updated successfully.");
             this.router.navigate(['/table-course']);
+          },
+          error => {
+            console.error("Failed to update course:", error);
+            this.errorMessage = error.error.message;
           }
         );
       } else {
@@ -75,6 +80,10 @@ constructor(private courseService:CourseService, private userService:UserService
             this.formCourse.reset();
             this.successMessage = "Cours rajouté avec succès"
             setTimeout(() => this.successMessage = null, 2000);
+          },
+          error => {  // Gestion de l'erreur pour l'ajout
+            console.error("Failed to add course:", error);
+            this.errorMessage = error.error.message;
           }
         );
       }
