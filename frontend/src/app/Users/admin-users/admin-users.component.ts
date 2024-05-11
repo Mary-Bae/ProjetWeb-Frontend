@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
 })
 export class AdminUsersComponent {
   users: any;
-  successMessage: string | null = null
+  successMessage: string
+  errorMessage: string;
 
   constructor(private userService: UserService, private router:Router){
 
@@ -39,7 +40,12 @@ export class AdminUsersComponent {
           this.successMessage = "Utilisateur supprimé avec succès"
           setTimeout(() => this.successMessage = null, 2000);
           this.loadUsers();
-        })
-      }     
+        },
+        error => {
+          console.error("Failed to delete course:", error);
+          this.errorMessage = error.error.message;
+          setTimeout(() => this.errorMessage = null, 3000);
+        }
+      )}  
    }
 }

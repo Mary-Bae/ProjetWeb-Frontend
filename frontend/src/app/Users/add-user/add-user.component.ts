@@ -50,7 +50,7 @@ export class AddUserComponent{
               if(model.roleId && model.roleId !== -1){
                   this.authService.AssignRole(model.username, model.roleId).subscribe({
                       next: () => {
-                          console.log("User updated successfully.");
+                          console.log("User added successfully.");
                           this.formUser.reset();
                           this.successMessage = "Nouvel utilisateur rajouté avec succès"
                           setTimeout(() => this.successMessage = null, 2000);
@@ -61,7 +61,7 @@ export class AddUserComponent{
                       }
                   });
               } else {
-                  console.log("User updated successfully.");
+                  console.log("User added successfully.");
                   this.formUser.reset();
                   this.successMessage = "Nouvel utilisateur avec le role guest rajouté avec succès."
                   setTimeout(() => this.successMessage = null, 2000);

@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col"></div>
     <div class="col">
-      <h1>Update rôle user</h1>
+      <h1>Update role user</h1>
       <p></p>
       <p></p>
         <form [formGroup]="formUser" (ngSubmit)="save(formUser)">
@@ -16,7 +16,8 @@
               </select>
             </div>      
               <button type="submit"[disabled]="formUser.invalid" class="btn btn-outline-primary">Save</button>
-              <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>         
+              <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+              <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>          
           </form>
     </div>
     <div class="col"></div>

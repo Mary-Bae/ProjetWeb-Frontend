@@ -1,6 +1,7 @@
 <div class="table-container">
     <h1>Manage courses</h1>
     <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>   
     <table class="table table-hover table-bordered caption-top">
         <caption>List of available courses</caption>
         <thead class="table-dark">

@@ -72,6 +72,7 @@ constructor(private courseService:CourseService, private userService:UserService
           error => {
             console.error("Failed to update course:", error);
             this.errorMessage = error.error.message;
+            setTimeout(() => this.errorMessage = null, 2000);
           }
         );
       } else {
@@ -81,9 +82,10 @@ constructor(private courseService:CourseService, private userService:UserService
             this.successMessage = "Cours rajouté avec succès"
             setTimeout(() => this.successMessage = null, 2000);
           },
-          error => {  // Gestion de l'erreur pour l'ajout
+          error => {
             console.error("Failed to add course:", error);
             this.errorMessage = error.error.message;
+            setTimeout(() => this.errorMessage = null, 2000);
           }
         );
       }
