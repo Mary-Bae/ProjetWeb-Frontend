@@ -17,7 +17,8 @@ export class UnrollCoursesComponent implements OnInit{
   userId: number;
   courses: any[];
   enrolledCourseIds: number[] = [];
-  successMessage: string
+  successMessage: string;
+  errorMessage : string;
 
   constructor(private courseService: CourseService, private gradeService: GradeService,
     private unrollService: UnrollService, private route: ActivatedRoute, private location: Location){}
@@ -56,27 +57,25 @@ export class UnrollCoursesComponent implements OnInit{
   }
 }
 
-  confirmSelection() {
-    this.courses.forEach(course => {
+async confirmSelection() {
+  try {
+    for (const course of this.courses) {
       if (course.isSelected && !this.enrolledCourseIds.includes(course.id)) {
-
-        this.unrollService.addUnrollement(this.userId, course.id).subscribe({
-          next: () => {
-          },
-          error: (error) => console.error(error)
-        });
+        await this.unrollService.addUnrollement(this.userId, course.id).toPromise();
       } else if (!course.isSelected && this.enrolledCourseIds.includes(course.id)) {
-        this.unrollService.delUnrollement(this.userId, course.id).subscribe({
-          next: () => {
-            console.log(`Deleted ${course.id}`);
-          },
-          error: (error) => console.error(error)
-        });
+        await this.unrollService.delUnrollement(this.userId, course.id).toPromise();
       }
-    });
+    }
+    this.loadEnrolledCourses();
     this.successMessage = "Enrollement réalisé avec succès"
     setTimeout(() => this.successMessage = null, 2000);
   }
+  catch (error) {
+  console.error(error);
+  this.errorMessage = "Une erreur est survenue durant l'enrollement, essayez de recommencer";
+  setTimeout(() => this.successMessage = null, 2000);
+  }
+}
 
   goBack() {
     this.location.back();

@@ -3,6 +3,7 @@
     <h1>{{ studentName }}</h1>
     <h2>Level : {{ gradeName }}</h2>
     <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>     
     <table class="table table-hover table-bordered caption-top">
         <caption>Unroll courses</caption>
         <thead class="table-dark">
