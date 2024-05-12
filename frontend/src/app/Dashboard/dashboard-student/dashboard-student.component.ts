@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UnrollService } from '../../shared/Unrollement/unroll.service';
 import { CourseModel } from 'src/app/shared/Course/course.model';
 import { UnrollModel } from 'src/app/shared/Unrollement/unroll.model';
@@ -20,7 +20,7 @@ export class DashboardStudentComponent implements OnInit {
   courses: CourseModel[] = [];
 
   constructor(private route: ActivatedRoute, private unrollService: UnrollService, 
-    private courseService: CourseService,  private userService:  UserService, private gradeService: GradeService) {}
+    private courseService: CourseService,  private userService:  UserService, private gradeService: GradeService, private router: Router) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -65,4 +65,10 @@ export class DashboardStudentComponent implements OnInit {
       }
     });
   }
+
+  unroll() {
+    if (this.userId) {
+      this.router.navigate(['/unroll-courses', this.userId]);
+    }
+}
 }
