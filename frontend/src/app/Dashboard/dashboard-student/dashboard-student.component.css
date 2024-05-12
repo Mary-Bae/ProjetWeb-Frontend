@@ -1,8 +1,12 @@
 .table-container {
-    margin: 0 5%;
+    margin: 0 15%;
   }
 
   h1, h2{
     color:green;
     margin-bottom: 2%;
+  }
+
+  .btn-outline-success{
+    margin-top: 10%;
   }

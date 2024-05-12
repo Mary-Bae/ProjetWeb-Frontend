@@ -9,11 +9,27 @@
             <div class="form-group">
               <label for="exampleFormControlInput1">Username</label>
               <input type="text" formControlName="username" class="form-control" id="exampleFormControlInput1"placeholder="">
+              <small class="text-danger"
+              *ngIf="formUser.get('username').hasError('required')">
+              This field is required.
+          </small>
+          <small class="text-danger"
+              *ngIf="formUser.get('username').hasError('minlength')">
+              Votre login doit avoir au moins 4 caractères
+          </small>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput2">Password</label>
                 <input type="text" formControlName="password" class="form-control" id="exampleFormControlInput2"placeholder="**********">
               </div>
+              <small class="text-danger"
+        *ngIf="formUser.get('password').hasError('required')">
+        Ce champ est requis.
+    </small>
+    <small class="text-danger"
+        *ngIf="formUser.get('password').hasError('pattern')">
+        Rentrez un mot de passe valide.
+    </small>
             <div class="form-group">
               <label for="exampleFormControlTextarea1">Role</label>
               <select formControlName="roleId" class="form-control" id="exampleFormControlTextarea1">
